@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { GET_WEATHER_QUERY } from '../graphql/Queries'
-import { FiSearch } from 'react-icons/fi'
+import { FiMoon, FiSearch, FiSun } from 'react-icons/fi'
 import {
   Spinner,
   Input,
@@ -15,12 +15,17 @@ import {
   StackDivider,
   HStack,
   IconButton,
+  Heading,
+  useColorMode,
+  Divider,
 } from '@chakra-ui/react'
 
 export default function Dashboard() {
   const [result, setResult] = useState('')
   const [value, setValue] = useState('')
   //const [message, setMessage] = useState('')
+  const { colorMode, toggleColorMode } = useColorMode()
+
   const [getWeather, { loading, data, error }] = useLazyQuery(
     GET_WEATHER_QUERY,
     {
@@ -41,11 +46,21 @@ export default function Dashboard() {
 
   return (
     <VStack>
-      <h1>Search your city</h1>
+      <IconButton
+        icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
+        m="8"
+        size="md"
+        alignSelf="flex-end"
+        onClick={toggleColorMode}
+      />
+      <Heading mb="8" size="xl">
+        Search your city
+      </Heading>
       <HStack>
         <Input
           type="text"
           placeholder="Enter city name"
+          value={result}
           onChange={(event) => setResult(event.target.value)}
         />
         <IconButton
@@ -72,7 +87,8 @@ export default function Dashboard() {
           </>
         )}
       </Stack>
-      <div>
+      <Stack>
+        <Divider mt="4" mb="4" />
         {data && (
           <>
             <VStack
@@ -94,7 +110,7 @@ export default function Dashboard() {
                   <Tr>
                     <Td>Temperature</Td>
 
-                    <Td isNumeric>
+                    <Td textAlign="right">
                       {Math.floor(
                         data.getCityByName.weather.temperature.actual - 273
                       ) + ' '}
@@ -103,12 +119,14 @@ export default function Dashboard() {
                   </Tr>
                   <Tr>
                     <Td>Feels like</Td>
-                    <Td>{data.getCityByName.weather.summary.description}</Td>
+                    <Td textAlign="right">
+                      {data.getCityByName.weather.summary.description}
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>Wind speed (mph)</Td>
 
-                    <Td isNumeric>
+                    <Td textAlign="right">
                       {data.getCityByName.weather.wind.speed + ' '}
                     </Td>
                   </Tr>
@@ -117,7 +135,7 @@ export default function Dashboard() {
             </VStack>
           </>
         )}
-      </div>
+      </Stack>
     </VStack>
   )
 }
