@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { GET_WEATHER_QUERY } from '../graphql/Queries'
 import { FiSearch } from 'react-icons/fi'
-import { WiDegrees } from 'react-icons/wi'
 import {
   Spinner,
   Input,
