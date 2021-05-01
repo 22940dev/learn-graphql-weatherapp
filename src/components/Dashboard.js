@@ -47,6 +47,7 @@ export default function Dashboard() {
   return (
     <VStack>
       <IconButton
+        aria-label="Toggle Dark Mode"
         icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
         m="8"
         size="md"
@@ -64,6 +65,7 @@ export default function Dashboard() {
           onChange={(event) => setResult(event.target.value)}
         />
         <IconButton
+          aria-label="Search city button"
           icon={<FiSearch />}
           onClick={() => {
             setValue(result)
