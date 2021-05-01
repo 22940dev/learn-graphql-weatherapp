@@ -19,6 +19,7 @@ import {
   useColorMode,
   Divider,
 } from '@chakra-ui/react'
+import Footer from './Footer'
 
 export default function Dashboard() {
   const [result, setResult] = useState('')
@@ -90,7 +91,7 @@ export default function Dashboard() {
         )}
       </Stack>
       <Stack>
-        <Divider mt="4" mb="4" />
+        <Divider mt="4" mb="4" borderColor="gray.100" />
         {data && (
           <>
             <VStack
@@ -138,6 +139,7 @@ export default function Dashboard() {
           </>
         )}
       </Stack>
+      <Footer />
     </VStack>
   )
 }
