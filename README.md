@@ -11,12 +11,12 @@
 
 ### How to contribute?
 - Give a Star to this repo, if you have found it useful.
-- Clone it
+- Fork it, and use it on your own project!
 
 ### How to start with the Project?
 - Go to the terminal
 - Clone this repo.
-- Run `git clone <url>` on you local terminal. (<url> - the url you find in your remote repo after cloning)
+- Run `git clone <url>` on your local terminal. ( `<url>` - the URL you find in your remote repo after cloning)
 - Then `cd` to the respective repo.
 - Run `npm install`.
 - Run `npm start`.
